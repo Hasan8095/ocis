@@ -1,135 +1,437 @@
-# ownCloud Infinite Scale
-
-[![Matrix](https://img.shields.io/matrix/ocis%3Amatrix.org?logo=matrix)](https://app.element.io/#/room/#ocis:matrix.org)
-[![Rocket chat](https://img.shields.io/badge/Chat%20on%20Rocket.Chat-blue?logo=data:image/png;base64,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)](https://talk.owncloud.com/channel/infinitescale)
-[![Build Status](https://drone.owncloud.com/api/badges/owncloud/ocis/status.svg)](https://drone.owncloud.com/owncloud/ocis)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=owncloud_ocis&metric=security_rating)](https://sonarcloud.io/dashboard?id=owncloud_ocis)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=owncloud_ocis&metric=coverage)](https://sonarcloud.io/dashboard?id=owncloud_ocis)
-[![Go Report](https://goreportcard.com/badge/github.com/owncloud/ocis)](https://goreportcard.com/report/github.com/owncloud/ocis)
-[![Go Doc](https://godoc.org/github.com/owncloud/ocis?status.svg)](http://godoc.org/github.com/owncloud/ocis)
-[![oCIS docker image](https://img.shields.io/docker/v/owncloud/ocis?label=oCIS%20docker%20image&logo=docker&sort=semver)](https://hub.docker.com/r/owncloud/ocis)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
-*   [Introduction](#introduction)
-*   [Overview](#overview)
-    * [Clients](#clients)
-    * [Web Office Applications](#web-office-applications)
-    * [Authentication](#authentication)
-    * [Installation](#installation)
-*   [Important Readings](#important-readings)
-*   [Run ownCloud Infinite Scale](#run-owncloud-infinite-scale)
-    * [Use the Official Documentation](#use-the-official-documentation)
-    * [Use the ocis Repo as Source](#use-the-ocis-repo-as-source)
-*   [Documentation](#documentation)
-    * [Admin Documentation](#admin-documentation)
-    * [Development Documentation](#development-documentation)
-*   [Security](#security)
-*   [Contributing](#contributing)
-*   [Copyright](#copyright)
-
-## Introduction
-
-ownCloud Infinite Scale (oCIS) is the new file sync & share platform that will be the foundation of your data management platform.
-
-Make sure to download the [latest released version](https://download.owncloud.com/ocis/ocis/stable/?sort=time&order=desc) today!
-
-## Overview
-
-### Clients
-
-Infinite Scale allows the following ownCloud clients:
-
-*   [web](https://github.com/owncloud/web),
-*   [Android](https://github.com/owncloud/android),
-*   [iOS](https://github.com/owncloud/ios-app) and
-*   [Desktop](https://github.com/owncloud/client/)
-
-to synchronize and share file spaces with a scalable server backend based on [reva](https://reva.link/) using open and well-defined APIs like [WebDAV](http://www.webdav.org/) and [CS3](https://github.com/cs3org/cs3apis/).
-
-### Web Office Applications
-
-Infinite Scale can integrate web office applications such as:
-
-*   [Collabora Online](https://github.com/CollaboraOnline/online),
-*   [OnlyOffice Docs](https://github.com/ONLYOFFICE/DocumentServer) or
-*   [Microsoft Office Online Server](https://owncloud.com/microsoft-office-online-integration-with-wopi/)
-
-Collaborative editing is supported by the [WOPI application gateway](https://github.com/cs3org/wopiserver).
-
-### Authentication
-
-Users are authenticated via [OpenID Connect](https://openid.net/connect/) using either an external IdP like [Keycloak](https://www.keycloak.org/) or the embedded [LibreGraph Connect](https://github.com/libregraph/lico) identity provider.
-
-### Installation
-
-With focus on easy install and operation, Infinite Scale is delivered as a single binary or container that allows scaling from a Raspberry Pi to a Kubernetes cluster by changing the configuration and starting multiple services as needed. The multiservice architecture allows tailoring the functionality to your needs and reusing services that may already be in place like when using Keycloak. See the details below for various installation options.
-
-## Important Readings
-
-Before starting to set up an instance, we **highly** recommend reading the [Prerequisites](https://doc.owncloud.com/ocis/next/prerequisites/prerequisites.html), the [Deployment](https://doc.owncloud.com/ocis/next/deployment/) section and especially the [General Information](https://doc.owncloud.com/ocis/next/deployment/general/general-info.html) page describing and explaining information that is valid for all deployment types.
-
-## Run ownCloud Infinite Scale
-
-### Use the Official Documentation
-
-See the [Quick Guide](https://doc.owncloud.com/ocis/next/quickguide/quickguide.html) or the [Binary Setup](https://doc.owncloud.com/ocis/next/deployment/binary/binary-setup.html) for a single-node bare-metal deployment starting with a Raspberry Pi or single server, the [Container Setup](https://doc.owncloud.com/ocis/next/deployment/container/container-setup.html) for classic container environments like docker or learn how to [deploy to Kubernetes](https://doc.owncloud.com/ocis/next/deployment/container/orchestration/orchestration.html).
-
-### Use the ocis Repo as Source
-
-Use this method to run an instance with the latest code. This is only recommended for development purposes. The minimum go version required is 1.22. Note that you need, as a prerequisite, a C compile environment installed because some dependencies like reva have components that require c-go libraries/tool-chains. The command installing for debian based systems is: `sudo apt install build-essentials`. To build and run a local instance with demo users:
-
-```console
-# get the source
-git clone git@github.com:owncloud/ocis.git
-
-# enter the ocis dir
-cd ocis
-
-# generate assets
-make generate
-
-# build the binary
-make -C ocis build
-
-# initialize a minimal oCIS configuration
-./ocis/bin/ocis init
-
-# run with demo users
-IDM_CREATE_DEMO_USERS=true ./ocis/bin/ocis server
-
-# Open your browser on http://localhost:9200 to access the bundled web-ui 
-```
-
-All batteries included: no external database, no external IDP needed!
-
-## Documentation
-
-### Admin Documentation
-Refer to the [Admin Documentation - Introduction to Infinite Scale](https://doc.owncloud.com/ocis/next/) to get started with running oCIS in production.
-
-### Development Documentation
-See the [Development Documentation - Getting Started](https://owncloud.dev/ocis/development/getting-started/) to get an overview of [Requirements](https://owncloud.dev/ocis/development/getting-started/#requirements), the [repository structure](https://owncloud.dev/ocis/development/getting-started/#repository-structure) and [other starting points](https://owncloud.dev/ocis/development/getting-started/#starting-points).
-
-## Security
-
-See the [Security Aspects](https://doc.owncloud.com/ocis/next/security/security.html) for a general overview of security related topics.
-If you find a security issue, please contact [security@owncloud.com](mailto:security@owncloud.com) first.
-
-## Contributing
-
-We are _very_ happy that oCIS does not require a Contributor License Agreement (CLA) as it is [Apache 2.0 licensed](LICENSE). We hope this will make it easier to contribute code. If you want to get in touch, most of the developers hang out in our [matrix channel](https://app.element.io/#/room/#ocis:matrix.org), our [rocket chat channel](https://talk.owncloud.com/channel/infinitescale) or reach out to the [ownCloud central forum](https://central.owncloud.org/).
-
-Infinite Scale is carefully internationalized so that everyone, no matter what language they speak, has a great experience. To achieve this, we rely on the help of volunteer translators. If you want to help, you can find the projects behind the following links:
- [Transifex for ownCloud web](https://app.transifex.com/owncloud-org/owncloud-web/translate/) and [Transifex for ownCloud](https://app.transifex.com/owncloud-org/owncloud/translate/) (Select the resource by filtering for `ocis-`).
-
-Please always refer to our [Contribution Guidelines](https://github.com/owncloud/ocis/blob/master/CONTRIBUTING.md).
-
-## End User License Agreement
-
-Some builds of stable ownCloud Infinite Scale releases provided by ownCloud GmbH are subject to an [End User License Agreement](https://owncloud.com/license-owncloud-infinite-scale/).
-
-## Copyright
-
-```console
-Copyright (c) 2020-2023 ownCloud GmbH <https://owncloud.com>
-```
+61403341443
+333brinn
+brinnamitchell3@gmail.com
+brinnamitchell3
+333btrinnTroyLexi12!
+333brinnTroyLexi12!
+TroyLexi1w2!TroyLexi12!
+dubulaythedude@gmail.com
++61403341443
+0435866618
+racrilabiz
+dubulaythedude@gmail.com
+333brinn
+brinnamitchell3@gmail.com
+brinnamitchell3
+333btrinnTroyLexi12!
+333brinnTroyLexi12!
+racrilla@gmail.com
+TroyLexi1w2!TroyLexi12!
+New session for Razer aura, s/n 1934907eb5f44e6d [07:33:53]
+Spotify
+System UI
+Android System
+Google Services Framework
+Phone
+Logging started by system
+Chrome
+I love you 
+Gboard
+Messages
+Android System
+Messages
+Have a good day hunHun 
+Lite
+ImS messageI'm not working cos my boss rostered to ksnymany people hon So thatsthat's cool ImS message
+I'm gomgon go grocery shopping nutbut How muchm money do u have N do u wanwant anything in pearticular 
+Messages
+Codas iI have 200 n CS message
+Messages
+Nova Launcher
+Okay
+Android System
+hunHun ge
+Nova Launcher
+Android System
+Nova Launcher
+Android System
+http://google.com/search?q=food+forum&oq=&gs_lcrp=EgZjaHJvbWUqCQgGEEUYOxjCAzIJCAAQRRg7GMIDMgkIARBFGDsYwgMyCQgCEEUYOxjCAzIJCAMQRRg7GMIDMgkIBBBFGDsYwgMyCQgFEEUYOxjCAzIJCAYQRRg7GMI
+Gboard
+com.android.providers.partnerbookmarks
+Phone
+Media Storage
+Quickstep
+Nova Launcher
+New call: 0262510366 unknown
+ca
+Android System
+Settings
+Google Play services
+Nova Launcher
+com.android.providers.partnerbookmarks
+Gboard
+Yis messageIsb nivenice age
+Media Storage
+Messages
+Is a veztvest fayday fprfor lexiLexi 
+Messages
+We love u e
+Android System
+Messages
+Messages
+Google
+Google Services Framework
+User Dictionary
+Messages
+Camera
+Nova Launcher
+Android System
+Nova Launcher
+Camera
+Nova Launcher
+Spotify
+Spotify
+Meet
+Spotify
+Camera
+Spotify
+Google
+Android System
+Quickstep
+Hunny iI feel really crapoycrappy 
+Gboard
+I got dressed to go shopping but iI jus feel so shit about mysdkfmyself n it makes me just santwant t
+o fodo nothing 
+Messages
+Nova Launcher
+I just want to feel good about myaelfmyself again IbjustssageI just feel lidontdon't feel like myself
+anymore n it sucks hunny I love touyou sorry for being annoying 
+Android System
+Messages
+Messages
+Nova Launcher
+Android System
+Nova Launcher
+Android System
+Android System
+Nova Launcher
+SMS from 32665 unknown : Tap to reset your Instagram password: https://ig.me/23SIjymNX6HYcno
+http://ig.me/23SIjymNX6HYcno
+http://instagram.com/accounts/password/reset/confirm/?uidb36=2gz4gq1&token=b1XYKBSMUYvp82MKgvju0yehOWlGvF8ysgWByiHC4CURVq6dytckv6DUp85RWKh6%3Apassword_reset_sms&v=351.0.1.35.98&
+Android System
+com.razer.homepageprovider
+http://instagram.com/two_factor/two_factor_login/?username=333brinn&last_four_digits=1443&identifier=waeVRI5Q3m9vlezFrMRiidPJwaPVzqgiEE3ceOEWucLkEYeiIKEhzvBJNBkVpWMc&sms_two_fac
+TroyLexi1w2!TroyLexi12!
+com.android.providers.partnerbookmarks
+Nova Launcher
+SMS from 32665 unknown : 901 572 is your Instagram code. Don't share it.
+Chrome
+901572
+Messages
+http://instagram.com/accounts/onetap/?next=%2F
+http://instagram.com/stories/raads59_/
+http://instagram.com/stories/raads59_/3480659451105490984/
+http://instagram.com/stories/lord_tengod/3480613738649036880/
+http://instagram.com/stories/_.vanillagoth._/3480919099955908144/
+http://instagram.com/stories/_.vanillagoth._/3480919291266574337/
+http://instagram.com/stories/thegaleries/3465295262685345478/
+http://instagram.com/stories/holliiewebber/3480695460673102968/
+http://instagram.com/stories/rivaloveridge/3480959709869957244/
+http://instagram.com/stories/rivaloveridge/3480993386851941087/
+http://instagram.com/stories/rivaloveridge/3481205250227223218/
+Dolby Atmos
+brin333trTroyLexi12!
+Instagram | | Waiting for approval | Approve from the other device to continue. | Try another way | 
+Instagram | | Was this a mistake? | Try another way to confirm it’s you, or close the app and start again. | 
+333brinnTroyLexi12!
+Instagram
+Quickstep
+333btrinnTroyLexi12!
+Instagram
+Nova Launcher
+Instagram | | Code | | We can send a new code in 01:00. | Trust this device and skip this step from now on | Continue | Try another way | 
+Instagram | | Need another option? | To keep your account safe, accessing it without your usual login methods can take a few days. To get started, go to account recovery. | account recovery | 
+333brinnTroyLexi12!
+SMS from 32665 unknown : 241 201 is your Instagram code. Don't share it.
+Instagram
+Instagram | | Save your login info? | We’ll save the login info for 333brinn, so you won't need to enter it next time you log in. | 
+Messages
+Instagram | | Your story | 
+Instagram | | 
+Instagram | | farmerbelle25 | 
+Instagram | | Suggested for you | See all | g | Followed by johnnyyjayy, troyrantanen + 4 more | Follow | NEW | Brooklyn | Followed by rivaloveridge, levi.peter_ + 1 more | Follow | Leb | Followed by levi.peter_, elisemartin_71 + 6 more | Follow | 
+Instagram | | Leb | Followed by levi.peter_, elisemartin_71 + 6 more | Follow | 
+Instagram | | 2 | 
+Instagram | | teagan.king_ | 
+Instagram | | 5 | 
+Instagram | | teagan.king_ my biggest flex is my friends 🖤 | 
+Instagram | | 4 days ago | 
+Instagram | | inspiredtowrite | 
+Instagram | | fur babies | 
+Instagram | | 🎨 | Learn origami | 
+Instagram | | diaries.of.teags | Followed by simone.davidson + 9 more | Follow | 
+241201
+Instagram | | equinox___444 | 
+Instagram | | little devil | 
+e
+Instagram
+Instagram | | melwonderr | 
+Instagram | | brianschrader_ | Brian Schrader | Follow | 
+Instagram | | keonarosewatson | 
+Instagram | | 16 | 
+Instagram | | cannababy777 The biggest obstacle is your own beliefs. What you believe you project & is the reality you create. Be careful to listen t… more | 
+Instagram | | View all comments | 
+Instagram | | diaries.of.teags | Followed by simone.davidson, _bando.d_ + 8 more | Follow | 
+Instagram | | Suggested for you | See all | NEW | Brooklyn | Followed by rivaloveridge, levi.peter_ + 1 more | Follow | Leb | Followed by levi.peter_, elisemartin_71 + 6 more | Follow | diaries.of.teags | Followed by simone.davidson, _bando.d_ + 8 more | Follow | 
+Instagram | | keonarosewatson No rizz just big brown eyes 🦋 | 
+Instagram | | Suggested for you | the.selfie.of.dorian.gray | Follow | 
+Instagram | | Suggested for you | the.selfie.of.dorian.gray | 
+Instagram | | 5 days ago | 
+Instagram | | Suggested for you | 
+Instagram | | Fiji | 
+Instagram | | the.selfie.of.dorian.gray hApPy MoNdAy guys | 
+Instagram | | Shop now | 
+Instagram | | Liked by chillinit.420 and others | 
+Instagram | | mons.monday Things found in my notes app 💌 ~~~~ I have 4,709 entries in my notes. It is the safest place after my physical journal… more | 
+Instagram | | truenorthcollectiveaus | Sponsored | 
+Instagram | | 51 | 
+Instagram
+Nova Launcher
+Lite
+brinnamitchell@y7mail.com•••••••••••12345!
+com.android.providers.partnerbookmarks
+com.razer.homepageprovider
+Dolby Atmos
+Speech Recognition and Synthesis from Google
+Instagram | | 66 | 
+Instagram | | __tooshy This is Leo’s world, I just live in it 😌 | 
+Instagram | | lexi_grice Love love love | 
+Instagram | | Add a comment… | 
+Instagram | | lexi_grice You, the dress and little Leo 🔥 | 
+Instagram | | Suggested for you | See all | Leb | Followed by levi.peter_, elisemartin_71 + 6 more | Follow | NEW | Brooklyn | Followed by rivaloveridge, levi.peter_ + 1 more | Follow | diaries.of.teags | Followed by simone.davidson, _bando.d_ + 8 more | Follow | 
+Instagram | | backfromtheborderline | 
+Instagram | | 2 hours ago | 
+Instagram | | eleganzjewellery Just a jigsaw falling into place 🧩 Sometimes I freak out about social media posting and content..… more | 
+Instagram | | angusatchison | Hue, Vietnam | 
+Instagram | | backfromtheborderline flowers. fuck yeah. 💐 *team america voice*… more | 
+Instagram | | View likes | 
+Instagram | | officeworks | 
+Instagram | | officeworks | Sponsored | 
+Instagram | | Liked by taco.pops and others | 
+Instagram | | 3 | 
+Instagram | | taco.pops 🤣🤣🤣🤣🤣❤️ | 
+Instagram | | altaredstatesofconsciousness | 
+Instagram | | 0:29 | 
+Instagram | | esmiskinminerals | Sponsored | 
+Instagram | | 3 days ago | 
+Instagram | | lord_tengod | 
+Instagram | | 408 | 
+Instagram | | Liked by brittney_nicole444 and others | 
+Instagram | | milliesavage_ | Sade • Kiss of Life | 
+Instagram | | milliesavage_ | 
+Instagram | | 2 days ago | 
+Instagram
+Instagram | | 2021🍃 | 
+Instagram | | 56 | 
+Instagram | | October 7 | 
+Instagram | | __tooshy | Gold Coast, Queensland | 
+Instagram | | __tooshy | 
+Instagram | | milliesavage_ Swipe to see the best ring I’ve ever made for the most special couple 💚 Flawless natural emerald paired with a 1.5… more | 
+Instagram | | rimmellondon | 
+Instagram | | rimmellondon Major 300% MORE loaded volume! Kind enough for sensitive eyes, with a plant powered formula. | 
+Instagram | | Liked by fernandseachai and others | 
+Instagram | | taco.pops and lord_tengod | 
+Instagram | | taco.pops and lord_tengod | taco.pops • Original audio | 
+Instagram | | 14 | 
+Instagram | | melwonderr “Every heart will thaw in the sun.. and I gave you the sun”… more | 
+Instagram | | subway_australia | Sponsored | 
+System UI
+Instagram | | 102 | 
+Instagram | | Learn more | 
+Instagram | | Liked by its_a_me_zoee and others | 
+Instagram | | 20 hours ago | 
+Instagram | | Suggested for you | eventhemoonwrites | Follow | 
+Instagram | | Suggested for you | eventhemoonwrites | 
+Gboard
+User Dictionary
+Quickstep
+Google Services Framework
+I not gon sgo shopping illI'll do otit tomrroetomorrow 
+Gboard
+Nova Launcher
+Android System
+Messages
+Settings
+Android System
+Package installer
+Nova Launcher
+Android System
+Settings
+Settings
+Nova Launcher
+I fine sage
+Messages
+Nova Launcher
+Android System
+Android System
+Nova Launcher
+Razer Services
+Nova Launcher
+Messages
+Nova Launcher
+Android System
+Spotify
+Nova Launcher
+Just rest when u get home so u feel better tomorrow 
+Messages
+Miss u hunny CantmessageCan't wait to cuddlre u 
+Messages
+Spotify
+Settings Suggestions
+Messages
+Nova Launcher
+Android System
+Spotify
+Google Services Framework
+Android System
+Chrome
+http://google.com/search?q=netbank+login&oq=net&gs_lcrp=EgZjaHJvbWUqDwgAEEUYOxiDARixAxiABDIPCAAQRRg7GIMBGLEDGIAEMgwIARBFGDkYsQMYgAQyEwgCEC4YgwEYxwEYsQMY0QMYgAQyDQgDEAAYgwEYsQMYg
+http://my.commbank.com.au/netbank/Logon/Logon.aspx
+Gboard
+Key Chain
+http://commbank.com.au/retail/digitalidentityprovider/connect/authorize?client_id=8c99994d-587b-4140-b5d8-9676a6e4bdeb&redirect_uri=https%3A%2F%2Fwww.commbank.com.au%2Fretail%2F
+http://commbank.com.au/retail/netbank/home/
+http://commbank.com.au/retail/digitalidentityprovider/connect/authorize?client_id=16df9b86-14e9-420e-832c-e159bdfb0bf4&redirect_uri=https%3a%2f%2fwww.my.commbank.com.au%2fnetban
+http://www2.my.commbank.com.au/netbank/TransactionHistory/History.aspx?ACCOUNT_PRODUCT_TYPE=DDA&DEEPLINKING_WITH_CONTEXT=True&_e=MAhHSzhsOXhreDNUcEdDdXppQVU4aUdMdkNOcXRjSmdxSXl3
+http://commbank.com.au/retail/netbank/accounts/?account=MAhHUGZSbkNsS21mclZKNCt2T3U0WitYcVJjUVlqdFdaMW13Q3ZsdEk2Nzl4SVV3PT3vSxXd6mnjvarxqLTkr8dERSNDxS7oIVGFon%2BxeAPpYjRHu0J8JRu
+http://commbank.com.au/retail/netbank/Payments/?DEEPLINKING_WITH_CONTEXT=False&TL=False&ei=nb-pn-transfers-bpay&IS_BBX_ENTRY=False&IS_NPP_ENTRY=False&REC_NUMBER=0&_e=MAhHRjcxMkp
+75754839100
+Speech Recognition and Synthesis from Google
+Yis messageI gomgon have bath 
+Android System
+Nova Launcher
+Spotify
+http://commbank.com.au/retail/netbank/Payments/
+com.razer.homepageprovider
+Gboard
+47
+Lite
+Spotify
+Lite
+Instagram
+Instagram | | ferdibartulovic | 
+Instagram | | cassadvantures | 
+Instagram | | cassadvantures | Auckland, New Zealand | Dexys Midnight Runners • Come On Eileen | 
+Nova Launcher
+Instagram | | Liked by davidmcmahonaustralia and others | 
+Instagram | | 7 hours ago | 
+Instagram | | rainierperez | rainierperez | 7 hours ago | • | rainierperez said I thought her other van was bigger I like the new whip new adventures woo hoo | 
+Instagram | | pjtidey | pjtidey | 6 hours ago | pjtidey said @cassadvantures awesome setup | @cassadvantures | Reply | 
+Instagram | | keithgalvin | keithgalvin | 7 hours ago | • | 
+Instagram | | keithgalvin | keithgalvin | 7 hours ago | • | keithgalvin said I could tell you were tall but never 6ft tall 😮 | Reply | 41 | 
+Instagram | | View 2 more replies | 
+Instagram | | rainierperez | rainierperez | 7 hours ago | • | rainierperez said I thought her other van was bigger I like the new whip new adventures woo hoo | Reply | 5 | 
+Instagram | | cassadvantures | cassadvantures | 7 hours ago | • | Author | 
+Instagram | | cassadvantures | cassadvantures | 7 hours ago | • | Author | cassadvantures said @rainierperez they are very similar in size actually☺️ | @rainierperez | 
+Instagram | | cassadvantures | cassadvantures | 7 hours ago | • | Author | cassadvantures said @rainierperez they are very similar in size actually☺️ | @rainierperez | Reply | 1 | 
+Instagram | | 131 | 
+Instagram
+Spotify
+Jokes iI feel to sad to get ipup HahahahehyeHahahah why am iI so sad hunHun 
+Google Services Framework
+Spotify
+Android System
+Very deppresso day 
+Android System
+Doobie is being eupprtsupport dog tho 
+Love u hunny
+Messages
+Instagram | | madisonxapril | 
+Instagram | | tammyhembrow | 
+Instagram | | tammyhembrow | The Cranberries • Sunday | 
+Instagram | | Liked by jsmommy5 and others | 
+Instagram | | tammyhembrow Easiest & quickest way for me to steam veggies is with my @haakaanz silicone steriliser bag 🥦  So it actually has so ma… more | 
+Nova Launcher
+Instagram | | 1 day ago | 
+Instagram | | 
+Instagram | | Mamaaa Gaia | 
+Instagram | | diaries.of.teags | Followed by dmb.3.3 + 9 more | Follow | 
+Instagram | | Go to Accounts Center | 
+Instagram | | 333brinn | 
+Instagram | | 19 | 6 | 
+Instagram | | shekiraspitaler I am obviously the only human you and lecci are basically twins | 
+Instagram | | 8 | 
+Instagram | | 333brinn I am honoured to be yo Aunty u precious lil elf | 
+Instagram | | April 19, 2019 | 
+Instagram | | 14 | 5 | 
+Instagram | | 14 | 4 | 
+Instagram | | 5 | 
+Instagram | | October 13, 2018 | 
+Instagram | | blue_boots_mcgee Beautiful! 🐝🌻🌻 | 
+Instagram | | jesse_cooperr | 
+Instagram | | sarcasm_only | sarcasm_only • Original audio | 
+Instagram | ur fave | Swipe up to turn on vanish mode | 
+She tolddd meeee 
+Instagram | ur fave | sarcasm_only | sarcasm_only • Original audio | 
+Instagram
+Messages
+Instagram | ur fave | 
+Instagram | ur fave | yungcookgod_ | 
+Instagram | ur fave | keezy.tattoo | 
+Android System
+Package installer
+Instagram | ur fave | Editor | 
+Instagram | ur fave | Turn off commenting | 
+Instagram | ur fave | keezy.tattoo | Meat Loaf • Hot Patootie - Bless My Soul | 
+Instagram | ur fave | 9 | 
+Instagram | ur fave | Liked by holliiewebber and others | 
+Instagram | ur fave | keezy.tattoo Mate.. she’s a bloody beauty 🥵🤤🥴 .… more | 
+Instagram | ur fave | 17 hours ago | 
+Instagram | ur fave | Suggested for you | See all | Leb | Followed by levi.peter_, elisemartin_71 + 6 more | Follow | diaries.of.teags | Followed by simone.davidson, _bando.d_ + 8 more | Follow | Simon Brett | Suggested for you | Follow | 
+Instagram | ur fave | Simon Brett | Suggested for you | Follow | 
+Instagram | ur fave | 5 | 
+Instagram | ur fave | Liked by iammichellecasady and others | 
+Instagram | ur fave | Shop now | 
+Instagram | ur fave | View all comments | 
+Instagram | ur fave | 19 | 
+Instagram | ur fave | 5 days ago | 
+Instagram | ur fave | backfromtheborderline | 
+Instagram | ur fave | View likes | 
+Instagram | ur fave | backfromtheborderline flowers. fuck yeah. 💐 *team america voice*… more | 
+Instagram | ur fave | 4 days ago | 
+Instagram | ur fave | sephoraaus | 
+Instagram | ur fave | sephoraaus | Sponsored | 
+Instagram
+Lite
+Gmail
+Camera
+Google Services Framework
+Camera
+Nova Launcher
+Miss u chlo
+Instagram
+Messages
+Nova Launcher
+Photos
+Nova Launcher
+YeshmessageYeah essage
+Android System
+Nova Launcher
+Messages
+Instagram | ur fave | indira | 
+Android System
+Instagram | ur fave | franw777 Nova and I made some play dough at home today, in her favourite colour of course. 💚… more | 
+Instagram | ur fave | 45 minutes ago | 
+Instagram
+Are u at gungahlin or gio 
+Google Services Framework
+Instagram
+Instagram | ur fave | holliiewebber | holliiewebber | August 7 | • | holliiewebber said That last bit made me tear up, I feel as though my future self is trying to tell me the same thing.. RUN! From one Canberran to another Thabkyou for showing me and the world just ho... | 12 | 
+Instagram | ur fave | holliiewebber | holliiewebber | August 7 | • | holliiewebber said That last bit made me tear up, I feel as though my future self is trying to tell me the same thing.. RUN! From one Canberran to another Thabkyou for showing me and the world just ho... | Reply | 12 | 
+Instagram | ur fave | holliiewebber | holliiewebber | August 7 | • | holliiewebber said That last bit made me tear up, I feel as though my future self is trying to tell me the same thing.. RUN! From one Canberran to another Thabkyou for showing me and the world just ho... | Reply | Reply to holliiewebber… | 12 | 
+Instagram | ur fave | kat_clark_ | kat_clark_ | August 8 | • | kat_clark_ said This made me tear up. It takes a strong person to make a decision like that. I’m so incredibly proud of you for listening to your heart. This is so beautiful ❤️❤️❤️ | 
+Instagram | ur fave | kat_clark_ | kat_clark_ | August 8 | • | kat_clark_ said This made me tear up. It takes a strong person to make a decision like that. I’m so incredibly proud of you for listening to your heart. This is so beautiful ❤️❤️❤️ | 124 | 
+Instagram | ur fave | kat_clark_ | kat_clark_ | August 8 | • | kat_clark_ said This made me tear up. It takes a strong person to make a decision like that. I’m so incredibly proud of you for listening to your heart. This is so beautiful ❤️❤️❤️ | Reply | 124 | 
+Instagram | ur fave | sofialigeros | sofialigeros | August 8 | • | Author | sofialigeros said @kat_clark_ love you sm mamaaaa! ❤️❤️❤️ | @kat_clark_ | 8 | 
+Instagram | ur fave | gabby_goodman | gabby_goodman | August 7 | • | 
+Instagram | ur fave | teneikalouisee | teneikalouisee | August 7 | • | teneikalouisee said This has to be my favourite post, replaying forever 😭🫶🏻 tattooed on me forever. Run darling | 10 | 
+Instagram | ur fave | sofialigeros | sofialigeros | August 8 | • | Author | sofialigeros said @teneikalouisee you’re so special my love ❤️❤️❤️❤️ | @teneikalouisee | Reply | 2 | 
+Instagram | ur fave | samirezzat_ | samirezzat_ | August 8 | • | 
+Instagram | ur fave | samirezzat_ | samirezzat_ | August 8 | • | samirezzat_ said i love this so much, you are one special cookie | 
+Instagram | ur fave | samirezzat_ | samirezzat_ | August 8 | • | samirezzat_ said i love this so much, you are one special cookie | Reply | 4 | 
+Instagram | ur fave | sofialigeros | sofialigeros | August 8 | • | Author | sofialigeros said @samirezzat_ my whole heart and soul ❤️ | @samirezzat_ | 
+Instagram | ur fave | helenpap64 | helenpap64 | August 7 | helenpap64 said 100% you’ve done the right thing when you’re young. That’s my biggest regret, loving the normal life. Good for you ❤️❤️❤️ | 
+Instagram | ur fave | kiera_maree_ | kiera_maree_ | August 7 | kiera_maree_ said This is so wholesome. And I needed to hear this today. Success and happy looks different for everyone I guess. Sometimes once the upheaval is actually in motion, it's all less scary ... | 1 | 
+Instagram | ur fave | kiera_maree_ | kiera_maree_ | August 7 | kiera_maree_ said This is so wholesome. And I needed to hear this today. Success and happy looks different for everyone I guess. Sometimes once the upheaval is actually in motion, it's all less scary ... | Reply | 1 | 
+Instagram | ur fave | mikhailla | mikhailla | August 7 | mikhailla said awww I love this ❤️ so brave and inspiring! I love that you dipped outside of what we’re all taught to do growing up and redefining how life can look by focusing on how it FEELS! 🔥😍 | 
+Instagram | ur fave | mikhailla | mikhailla | August 7 | mikhailla said awww I love this ❤️ so brave and inspiring! I love that you dipped outside of what we’re all taught to do growing up and redefining how life can look by focusing on how it FEELS! 🔥😍 | 1 |
